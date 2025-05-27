@@ -37,10 +37,10 @@
 
 #include "modes.h"
 
-void pitch_downsample(celt_sig * restrict x[], celt_word16 * restrict x_lp,
+void celtpitch_downsample(celt_sig * restrict x[], celt_word16 * restrict x_lp,
       int len, int _C);
 
-void pitch_search(const celt_word16 * restrict x_lp, celt_word16 * restrict y,
+void celtpitch_search(const celt_word16 * restrict x_lp, celt_word16 * restrict y,
                   int len, int max_pitch, int *pitch);
 
 celt_word16 remove_doubling(celt_word16 *x, int maxperiod, int minperiod,

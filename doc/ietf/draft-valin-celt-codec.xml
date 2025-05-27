@@ -594,8 +594,8 @@ The MDCT output is divided into bands that are designed to match the ear's criti
 with the exception that each band has to be at least 3 bins wide. For each band, the encoder
 computes the energy that will later be encoded. Each band is then normalized by the 
 square root of the <spanx style="strong">non-quantized</spanx> energy, such that each band now forms a unit vector X.
-The energy and the normalization are computed by compute_band_energies()
-and normalise_bands() (<xref target="bands.c">bands.c</xref>), respectively.
+The energy and the normalization are computed by celtcompute_band_energies()
+and celtnormalise_bands() (<xref target="bands.c">bands.c</xref>), respectively.
 </t>
 </section>
 
@@ -623,8 +623,8 @@ frame, while the frequency domain (within the current frame) prediction is based
 on coarse quantization only (because the fine quantization has not been computed
 yet). We approximate the ideal 
 probability distribution of the prediction error using a Laplace distribution. The
-coarse energy quantization is performed by quant_coarse_energy() and 
-quant_coarse_energy() (<xref target="quant_bands.c">quant_bands.c</xref>).
+coarse energy quantization is performed by celtquant_coarse_energy() and 
+celtquant_coarse_energy() (<xref target="quant_bands.c">quant_bands.c</xref>).
 </t>
 
 <t>
@@ -646,7 +646,7 @@ After the coarse energy quantization and encoding, the bit allocation is compute
 energy quantization is determined for each band. Let B_i be the number of fine energy bits 
 for band i; the refinement is an integer f in the range [0,2^B_i-1]. The mapping between f
 and the correction applied to the coarse energy is equal to (f+1/2)/2^B_i - 1/2. Fine
-energy quantization is implemented in quant_fine_energy() 
+energy quantization is implemented in celtquant_fine_energy() 
 (<xref target="quant_bands.c">quant_bands.c</xref>).
 </t>
 
@@ -655,7 +655,7 @@ If any bits are unused at the end of the encoding process, these bits are used t
 increase the resolution of the fine energy encoding in some bands. Priority is given
 to the bands for which the allocation (<xref target="allocation"></xref>) was rounded
 down. At the same level of priority, lower bands are encoded first. Refinement bits
-are added until there are no unused bits. This is implemented in quant_energy_finalise() 
+are added until there are no unused bits. This is implemented in celtquant_energy_finalise() 
 (<xref target="quant_bands.c">quant_bands.c</xref>).
 </t>
 
@@ -1053,7 +1053,7 @@ procedure described in the following section.
 <t>
 The energy of each band is extracted from the bit-stream in two steps according
 to the same coarse-fine strategy used in the encoder. First, the coarse energy is
-decoded in unquant_coarse_energy() (<xref target="quant_bands.c">quant_bands.c</xref>)
+decoded in celtunquant_coarse_energy() (<xref target="quant_bands.c">quant_bands.c</xref>)
 based on the probability of the Laplace model used by the encoder.
 </t>
 
@@ -1061,9 +1061,9 @@ based on the probability of the Laplace model used by the encoder.
 After the coarse energy is decoded, the same allocation function as used in the
 encoder is called (<xref target="allocation"></xref>). This determines the number of
 bits to decode for the fine energy quantization. The decoding of the fine energy bits
-is performed by unquant_fine_energy() (<xref target="quant_bands.c">quant_bands.c</xref>).
+is performed by celtunquant_fine_energy() (<xref target="quant_bands.c">quant_bands.c</xref>).
 Finally, like the encoder, the remaining bits in the stream (that would otherwise go unused)
-are decoded using unquant_energy_finalise() (<xref target="quant_bands.c">quant_bands.c</xref>).
+are decoded using celtunquant_energy_finalise() (<xref target="quant_bands.c">quant_bands.c</xref>).
 </t>
 </section>
 
@@ -1114,7 +1114,7 @@ which is the same function as used in the encoder.
 <t>
 Just like each band was normalized in the encoder, the last step of the decoder before
 the inverse MDCT is to denormalize the bands. Each decoded normalized band is
-multiplied by the square root of the decoded energy. This is done by denormalise_bands()
+multiplied by the square root of the decoded energy. This is done by celtdenormalise_bands()
 (<xref target="bands.c">bands.c</xref>).
 </t>
 </section>

@@ -167,7 +167,7 @@ EXPORT void celt_mode_destroy(CELTMode *mode);
 
 /* Encoder stuff */
 
-EXPORT int celt_encoder_get_size(int channels);
+EXPORT int oldcelt_encoder_get_size(int channels);
 
 EXPORT int celt_encoder_get_size_custom(const CELTMode *mode, int channels);
 
@@ -190,7 +190,7 @@ EXPORT CELTEncoder *celt_encoder_create(int sampling_rate, int channels, int *er
 */
 EXPORT CELTEncoder *celt_encoder_create_custom(const CELTMode *mode, int channels, int *error);
 
-EXPORT CELTEncoder *celt_encoder_init(CELTEncoder *st, int sampling_rate, int channels, int *error);
+EXPORT CELTEncoder *oldcelt_encoder_init(CELTEncoder *st, int sampling_rate, int channels, int *error);
 
 EXPORT CELTEncoder *celt_encoder_init_custom(CELTEncoder *st, const CELTMode *mode, int channels, int *error);
 
@@ -245,7 +245,7 @@ EXPORT int celt_encoder_ctl(CELTEncoder * st, int request, ...);
 
 /* Decoder stuff */
 
-EXPORT int celt_decoder_get_size(int channels);
+EXPORT int old_celt_decoder_get_size(int channels);
 
 EXPORT int celt_decoder_get_size_custom(const CELTMode *mode, int channels);
 
@@ -267,9 +267,9 @@ EXPORT CELTDecoder *celt_decoder_create(int sampling_rate, int channels, int *er
  @param error Returns an error code
  @return Newly created decoder state.
  */
-EXPORT CELTDecoder *celt_decoder_create_custom(const CELTMode *mode, int channels, int *error);
+EXPORT CELTDecoder *old_celt_decoder_create_custom(const CELTMode *mode, int channels, int *error);
 
-EXPORT CELTDecoder *celt_decoder_init(CELTDecoder *st, int sampling_rate, int channels, int *error);
+EXPORT CELTDecoder *old_celt_decoder_init(CELTDecoder *st, int sampling_rate, int channels, int *error);
 
 EXPORT CELTDecoder *celt_decoder_init_custom(CELTDecoder *st, const CELTMode *mode, int channels, int *error);
 
@@ -298,7 +298,7 @@ EXPORT int celt_decode_float(CELTDecoder *st, const unsigned char *data, int len
             returned here in 16-bit PCM format (native endian). 
  @return Error code.
  */
-EXPORT int celt_decode(CELTDecoder *st, const unsigned char *data, int len, celt_int16 *pcm, int frame_size);
+EXPORT int old_celt_decode(CELTDecoder *st, const unsigned char *data, int len, celt_int16 *pcm, int frame_size);
 
 /** Query and set decoder parameters
    @param st Decoder state

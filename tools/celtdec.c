@@ -311,7 +311,7 @@ static CELTDecoder *process_header(ogg_packet *op, celt_int32 enh_enabled, celt_
    
    *channels = header.nb_channels;
    *overlap=header.overlap;
-   st = celt_decoder_create_custom(*mode, header.nb_channels, NULL);
+   st = old_celt_decoder_create_custom(*mode, header.nb_channels, NULL);
    if (!st)
    {
       fprintf (stderr, "Decoder initialization failed.\n");
@@ -566,9 +566,9 @@ int main(int argc, char **argv)
                   int ret;
                   /*Decode frame*/
                   if (!lost)
-                     ret = celt_decode(st, (unsigned char*)op.packet, op.bytes, output, frame_size);
+                     ret = old_celt_decode(st, (unsigned char*)op.packet, op.bytes, output, frame_size);
                   else
-                     ret = celt_decode(st, NULL, 0, output, frame_size);
+                     ret = old_celt_decode(st, NULL, 0, output, frame_size);
 
                   /*for (i=0;i<frame_size*channels;i++)
                     printf ("%d\n", (int)output[i]);*/

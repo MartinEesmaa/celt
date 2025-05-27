@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
       fprintf(stderr, "Failed to create the encoder: %s\n", celt_strerror(err));
       return 1;
    }
-   dec = celt_decoder_create_custom(mode, channels, &err);
+   dec = old_celt_decoder_create_custom(mode, channels, &err);
    if (err != 0)
    {
       fprintf(stderr, "Failed to create the decoder: %s\n", celt_strerror(err));
@@ -161,11 +161,11 @@ int main(int argc, char *argv[])
       /* This is to simulate packet loss */
       if (argc==9 && rand()%1000<atoi(argv[argc-3]))
       /*if (errors && (errors%2==0))*/
-         ret = celt_decode(dec, NULL, len, out, frame_size);
+         ret = old_celt_decode(dec, NULL, len, out, frame_size);
       else
-         ret = celt_decode(dec, data, len, out, frame_size);
+         ret = old_celt_decode(dec, data, len, out, frame_size);
       if (ret < 0)
-         fprintf(stderr, "celt_decode() failed: %s\n", celt_strerror(ret));
+         fprintf(stderr, "old_celt_decode() failed: %s\n", celt_strerror(ret));
 #else
       for (i=0;i<ret*channels;i++)
          out[i] = in[i];

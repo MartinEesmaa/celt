@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
    CELTDecoder *dec_state;
    CELTMode *mode = celt_mode_create(SAMPLING_RATE, FRAME_SIZE, NULL);
    enc_state = celt_encoder_create_custom(mode, CHANNELS, NULL);
-   dec_state = celt_decoder_create_custom(mode, CHANNELS, NULL);
+   dec_state = old_celt_decoder_create_custom(mode, CHANNELS, NULL);
    struct sched_param param;
    /*param.sched_priority = 40; */
    param.sched_priority = sched_get_priority_min(SCHED_FIFO);
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
             jitter_buffer_get(jitter, &packet, FRAME_SIZE, NULL);
             if (packet.len==0)
               packet.data=NULL;
-            celt_decode(dec_state, packet.data, packet.len, pcm, FRAME_SIZE);
+            old_celt_decode(dec_state, packet.data, packet.len, pcm, FRAME_SIZE);
          } else {
             for (i=0;i<FRAME_SIZE*CHANNELS;i++)
                pcm[i] = 0;
