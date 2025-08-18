@@ -69,11 +69,6 @@ AC_MSG_RESULT($has_alloca)
 
 AC_CHECK_HEADERS(sys/soundcard.h sys/audioio.h)
 
-AS_IF([test "x$with_ogg" != xno],
- [XIPH_PATH_OGG([tools="tools"], [tools=""])],
- [tools=""])
-AC_SUBST(tools)
-
 AC_CHECK_LIB(m, sin)
 
 # Check for getopt_long; if not found, use included source.
@@ -208,8 +203,8 @@ if test "$OPUS_BUILD" = "true" ; then
 AC_DEFINE(OPUS_BUILD, [], [We're part of Opus])
 fi
 
-AC_OUTPUT([Makefile libcelt/Makefile tests/Makefile 
-           celt.pc tools/Makefile libcelt.spec ])
+AC_OUTPUT([Makefile libcelt/Makefile 
+           celt.pc libcelt.spec ])
 
 AC_MSG_RESULT([
 ------------------------------------------------------------------------
