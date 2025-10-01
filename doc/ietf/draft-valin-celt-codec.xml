@@ -779,7 +779,7 @@ and the whole balance are subtracted, respectively.
 <section anchor="pvq-search" title="PVQ Search">
 
 <t>
-The search for the best codevector y is performed by alg_quant()
+The search for the best codevector y is performed by celt_alg_quant()
 (<xref target="vq.c">vq.c</xref>). There are several possible approaches to the 
 search with a tradeoff between quality and complexity. The method used in the reference
 implementation computes an initial codeword y1 by projecting the residual signal 
@@ -1093,7 +1093,7 @@ decode_pulses() (<xref target="cwrs.c">cwrs.c</xref>).
 
 <section anchor="normalised-decoding" title="Normalised Vector Decoding">
 <t>
-The spherical codebook is decoded by alg_unquant() (<xref target="vq.c">vq.c</xref>).
+The spherical codebook is decoded by celt_alg_unquant() (<xref target="vq.c">vq.c</xref>).
 The index of the PVQ entry is obtained from the range coder and converted to 
 a pulse vector by decode_pulses() (<xref target="cwrs.c">cwrs.c</xref>).
 </t>

@@ -293,7 +293,7 @@ void celtanti_collapse(const CELTMode *m, celt_norm *_X, unsigned char *collapse
          }
          /* We just added some energy, so we need to renormalise */
          if (renormalize)
-            renormalise_vector(X, N0<<LM, Q15ONE);
+            celt_renormalise_vector(X, N0<<LM, Q15ONE);
       } while (++c<C);
    }
 
@@ -781,7 +781,7 @@ static unsigned quant_band(int encode, const CELTMode *m, int i, celt_norm *X, c
             side and mid. With just that parameter, we can re-scale both
             mid and side because we know that 1) they have unit norm and
             2) they are orthogonal. */
-         itheta = stereo_itheta(X, Y, stereo, N);
+         itheta = celt_stereo_itheta(X, Y, stereo, N);
       }
       tell = ec_tell_frac(ec);
       if (qn!=1)
@@ -1054,9 +1054,9 @@ static unsigned quant_band(int encode, const CELTMode *m, int i, celt_norm *X, c
 
          /* Finally do the actual quantization */
          if (encode)
-            cm = alg_quant(X, N, K, spread, B, resynth, ec, gain);
+            cm = celt_alg_quant(X, N, K, spread, B, resynth, ec, gain);
          else
-            cm = alg_unquant(X, N, K, spread, B, ec, gain);
+            cm = celt_alg_unquant(X, N, K, spread, B, ec, gain);
       } else {
          /* If there's no pulse, fill the band anyway */
          int j;
@@ -1094,7 +1094,7 @@ static unsigned quant_band(int encode, const CELTMode *m, int i, celt_norm *X, c
                   }
                   cm = fill;
                }
-               renormalise_vector(X, N, gain);
+               celt_renormalise_vector(X, N, gain);
             }
          }
       }

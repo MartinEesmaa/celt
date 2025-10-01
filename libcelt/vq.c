@@ -171,7 +171,7 @@ static unsigned extract_collapse_mask(int *iy, int N, int B)
    return collapse_mask;
 }
 
-unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B,
+unsigned celt_alg_quant(celt_norm *X, int N, int K, int spread, int B,
       int resynth, ec_enc *enc, celt_word16 gain)
 {
    VARDECL(celt_norm, y);
@@ -186,7 +186,7 @@ unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B,
    unsigned collapse_mask;
    SAVE_STACK;
 
-   celt_assert2(K!=0, "alg_quant() needs at least one pulse");
+   celt_assert2(K!=0, "celt_alg_quant() needs at least one pulse");
 
    ALLOC(y, N, celt_norm);
    ALLOC(iy, N, int);
@@ -335,7 +335,7 @@ unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B,
 
 /** Decode pulse vector and combine the result with the pitch vector to produce
     the final normalised signal in the current band. */
-unsigned alg_unquant(celt_norm *X, int N, int K, int spread, int B,
+unsigned celt_alg_unquant(celt_norm *X, int N, int K, int spread, int B,
       ec_dec *dec, celt_word16 gain)
 {
    int i;
@@ -344,7 +344,7 @@ unsigned alg_unquant(celt_norm *X, int N, int K, int spread, int B,
    VARDECL(int, iy);
    SAVE_STACK;
 
-   celt_assert2(K!=0, "alg_unquant() needs at least one pulse");
+   celt_assert2(K!=0, "celt_alg_unquant() needs at least one pulse");
    ALLOC(iy, N, int);
    decode_pulses(iy, N, K, dec);
    Ryy = 0;
@@ -359,7 +359,7 @@ unsigned alg_unquant(celt_norm *X, int N, int K, int spread, int B,
    return collapse_mask;
 }
 
-void renormalise_vector(celt_norm *X, int N, celt_word16 gain)
+void celt_renormalise_vector(celt_norm *X, int N, celt_word16 gain)
 {
    int i;
 #ifdef FIXED_POINT
@@ -389,7 +389,7 @@ void renormalise_vector(celt_norm *X, int N, celt_word16 gain)
    /*return celt_sqrt(E);*/
 }
 
-int stereo_itheta(celt_norm *X, celt_norm *Y, int stereo, int N)
+int celt_stereo_itheta(celt_norm *X, celt_norm *Y, int stereo, int N)
 {
    int i;
    int itheta;

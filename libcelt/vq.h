@@ -48,7 +48,7 @@
  * @param enc Entropy encoder state
  * @ret A mask indicating which blocks in the band received pulses
 */
-unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B,
+unsigned celt_alg_quant(celt_norm *X, int N, int K, int spread, int B,
       int resynth, ec_enc *enc, celt_word16 gain);
 
 /** Algebraic pulse decoder
@@ -59,11 +59,11 @@ unsigned alg_quant(celt_norm *X, int N, int K, int spread, int B,
  * @param dec Entropy decoder state
  * @ret A mask indicating which blocks in the band received pulses
  */
-unsigned alg_unquant(celt_norm *X, int N, int K, int spread, int B,
+unsigned celt_alg_unquant(celt_norm *X, int N, int K, int spread, int B,
       ec_dec *dec, celt_word16 gain);
 
-void renormalise_vector(celt_norm *X, int N, celt_word16 gain);
+void celt_renormalise_vector(celt_norm *X, int N, celt_word16 gain);
 
-int stereo_itheta(celt_norm *X, celt_norm *Y, int stereo, int N);
+int celt_stereo_itheta(celt_norm *X, celt_norm *Y, int stereo, int N);
 
 #endif /* VQ_H */

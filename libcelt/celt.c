@@ -2080,7 +2080,7 @@ static void celt_decode_lost(CELTDecoder * restrict st, celt_word16 * restrict p
                seed = lcg_rand(seed);
                X[boffs+j] = (celt_int32)(seed)>>20;
             }
-            renormalise_vector(X+boffs, blen, Q15ONE);
+            celt_renormalise_vector(X+boffs, blen, Q15ONE);
          }
          for (i=(st->mode->eBands[st->end]<<LM);i<N;i++)
             X[c*N+i] = 0;
