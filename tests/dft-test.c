@@ -102,7 +102,7 @@ void test1d(int nfft,int isinverse)
     if (isinverse)
        kiss_ifft(cfg,in,out);
     else
-       kiss_fft(cfg,in,out);
+       celt_kiss_fft(cfg,in,out);
 
     /*for (k=0;k<nfft;++k) printf("%d %d ", out[k].r, out[k].i);printf("\n");*/
 

@@ -179,7 +179,7 @@ void clt_mdct_forward(const mdct_lookup *l, kiss_fft_scalar *in, kiss_fft_scalar
    }
 
    /* N/4 complex FFT, down-scales by 4/N */
-   kiss_fft(l->kfft[shift], (kiss_fft_cpx *)out, (kiss_fft_cpx *)f);
+   celt_kiss_fft(l->kfft[shift], (kiss_fft_cpx *)out, (kiss_fft_cpx *)f);
 
    /* Post-rotate */
    {

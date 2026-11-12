@@ -78,7 +78,7 @@ extern "C" {
 
 #define kiss_fft_alloc_twiddles SUF(kiss_fft_alloc_twiddles,KF_SUFFIX)
 #define kiss_fft_alloc SUF(kiss_fft_alloc,KF_SUFFIX)
-#define kiss_fft SUF(kiss_fft,KF_SUFFIX)
+#define celt_kiss_fft SUF(celt_kiss_fft,KF_SUFFIX)
 #define kiss_ifft SUF(kiss_ifft,KF_SUFFIX)
 #define kiss_fft_stride SUF(kiss_fft_stride,KF_SUFFIX)
 #define kiss_ifft_stride SUF(kiss_ifft_stride,KF_SUFFIX)
@@ -143,7 +143,7 @@ kiss_fft_state *kiss_fft_alloc_twiddles(int nfft,void * mem,size_t * lenmem, con
 kiss_fft_state *kiss_fft_alloc(int nfft,void * mem,size_t * lenmem);
 
 /**
- * kiss_fft(cfg,in_out_buf)
+ * celt_kiss_fft(cfg,in_out_buf)
  *
  * Perform an FFT on a complex input buffer.
  * for a forward FFT,
@@ -152,7 +152,7 @@ kiss_fft_state *kiss_fft_alloc(int nfft,void * mem,size_t * lenmem);
  * Note that each element is complex and can be accessed like
     f[k].r and f[k].i
  * */
-void kiss_fft(const kiss_fft_state *cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout);
+void celt_kiss_fft(const kiss_fft_state *cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout);
 void kiss_ifft(const kiss_fft_state *cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout);
 
 void kiss_fft_free(const kiss_fft_state *cfg);

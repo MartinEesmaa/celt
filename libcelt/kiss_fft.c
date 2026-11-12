@@ -671,7 +671,7 @@ static void kiss_fft_stride(const kiss_fft_state *st,const kiss_fft_cpx *fin,kis
     kf_work( fout, fin, 1,in_stride, st->factors,st, 1, 1);
 }
 
-void kiss_fft(const kiss_fft_state *cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout)
+void celt_kiss_fft(const kiss_fft_state *cfg,const kiss_fft_cpx *fin,kiss_fft_cpx *fout)
 {
     kiss_fft_stride(cfg,fin,fout,1);
 }
